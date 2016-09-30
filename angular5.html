@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="myApp.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div ng-controller="countriesCtrl">
+    <table>
+        <tr  ng-repeat="x in countriesData">
+            <td>{{ x.ID}}</td>
+            <td>{{ x.name}}</td>
+            <td>{{ x.population}}</td>
+            <td>{{ x.percentage}}</td>
+            <td>{{ x.position}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

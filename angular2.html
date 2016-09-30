@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="" ng-init="listName=[]">
+
+<p>Please enter your name:</p>
+<p>Name: <input type="text" ng-model="Name"></p>
+<button ng-click="listName.push(Name); Name=null">ADD NAME</button>
+<p>List names: </p>
+<ul>
+    <li ng-click="listName.splice($index, 1)" ng-repeat="x in listName">
+      {{ x }}
+    </li>
+</ul>
+
+
+</div>
+
+</body>
+</html>

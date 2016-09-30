@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="myApp.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-controller="EmployeesCtrl">
+  <div>
+    <p><button ng-click="addEmployee()">Add Employee</button></p>
+    <p>You can filter result: <input type="text" ng-model="SelectedFilter"></p>
+    <table>
+        <tr  ng-repeat="x in filteredEmployee=(EmployeesData | filter: SelectedFilter)">
+            <td>{{ x.id}}</td>
+            <td>{{ x.fname}}</td>
+            <td>{{ x.minit}}</td>
+            <td>{{ x.lname}}</td>
+            <td>{{ x.bdate}}</td>
+            <td>{{ x.address}}</td>
+            <td>{{ x.sex}}</td>
+            <td>{{ x.salary}}</td>
+            <td>{{ x.supervisor}}</td>
+            <td>{{ x.email}}</td>
+            <td>{{ x.dep}}</td>
+            <td>{{ x.dname}}</td>
+            <td><button ng-click="showData($index)"
+                        data-toggle="modal"
+                        data-target="#showModal">Show</button></td>
+            <td><button ng-click="editIndex($index)"
+                        data-toggle="modal"
+                        data-targect>Edit</button></td>
+            <td><button ng-click="delete($index)">Delete</button></td>
+        </tr>
+    </table>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="showModal" role="dialog">
+      <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">{{filteredEmployee[selectedIndex].fname}} {{filteredEmployee[selectedIndex].minit}} {{filteredEmployee[selectedIndex].lname}} </h4>
+              </div>
+              <div class="modal-body">
+                  <p>Birthday <b>{{filteredEmployee[selectedIndex].bdate |date}}</b> </p>
+                  <p>Address: {{filteredEmployee[selectedIndex].address}}</p>
+                  <p>Sex: {{filteredEmployee[selectedIndex].sex}}</p>
+                  <p>Salary: {{filteredEmployee[selectedIndex].salary |currency}}</p>
+                  <p>Email: {{filteredEmployee[selectedIndex].email}}</p>
+                  <p>Department: {{filteredEmployee[selectedIndex].dname}}</p>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</body>
+</html>
